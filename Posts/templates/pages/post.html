@@ -1,0 +1,31 @@
+{% extends 'pages/base.html' %}
+
+{% block title %} post {% endblock title %}
+
+{% block content %} 
+
+	<h1>post</h1> 
+	<form method="POST" action="/ho/">
+		{% csrf_token %}
+
+		<!--  -->
+		<label for="title">nom</label>
+		<input type="text" name="title" id="title">
+		<br> <br>
+		<label for="body">titre</label> 
+		<input type="text" name="body" id="body" required>
+		<br><br>
+		
+		<input type="submit" name="submit" value="ok" >
+
+
+	</form>
+
+
+{% endblock content %}
+
+
+
+
+
+
