@@ -12,10 +12,10 @@ firebase = firebase_admin.initialize_app(cred)
 db = firestore.client()
 
  
-def recordata():
-  sensor_ref= db.collection(u'mesures')
-  moisture_ref= sensor_ref.document(u'moisture')
-  moisture_ref.set(form.body)
-  print(form.body)
-  if (form.title != 0):
-  time.sleep(delay)
+def recordata(value):
+	if (value != 0):
+	  sensor_ref= db.collection(u'mesures')
+	  moisture_ref= sensor_ref.document(u'moisture')
+	  moisture_ref.set(value)
+	  print(value)
+	  time.sleep(delay)

@@ -13,7 +13,7 @@ def post(request):
 
 	return render (request, "pages/post.html")
 
-def ho(request):
+def show(request):
 	from . import sensorsdata
 
 	if request.method == 'POST':
@@ -21,9 +21,9 @@ def ho(request):
 		form=Post(request.POST)
 
 		if form.is_valid():
-			recordata()
+			recordata(form.data)
 			
-			return render(request, 'pages/ho.html', {'form': form})
+			return render(request, 'pages/show.html', {'form': form})
 
 		else:
 			return render(request, 'pages/post.html')
