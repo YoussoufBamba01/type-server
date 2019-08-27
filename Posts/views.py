@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 # Create your views here.
 
 from . forms import Post
@@ -13,24 +13,31 @@ def post(request):
 
 	return render (request, "pages/post.html")
 
+def error(request):
+	return render(request, 'pages/error.html')
+
 def show(request):
 	from . import sensorsdata
 
 	if request.method == 'POST':
-		
-		form=Post(request.POST)
+		form = Post(request.POST)
+		value = form.data
 
-		if form.is_valid():
-			recordata(form.data)
-			
-			return render(request, 'pages/show.html', {'form': form})
-
+		if value.is_valid():
+			return HttpResponse( "post vide de contenu")
+				
 		else:
-			return render(request, 'pages/post.html')
+			
+			sensorsdata.recordata(value)
+			return render(request, 'pages/show.html', {'form': form.data})	
 
 	else:
 		form=Post()
-		return render(request, 'pages/post.html')
+		return render(request, 'pages/error.html')
+
+
+
+		
 
 
     
