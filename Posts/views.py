@@ -13,9 +13,6 @@ def post(request):
 
 	return render (request, "pages/post.html")
 
-def error(request):
-	return render(request, 'pages/error.html')
-
 def show(request):
 	from . import sensorsdata
 
@@ -23,13 +20,9 @@ def show(request):
 		form = Post(request.POST)
 		value = form.data
 
-		if value.is_valid():
-			return HttpResponse( "post vide de contenu")
-				
-		else:
-			
-			sensorsdata.recordata(value)
-			return render(request, 'pages/show.html', {'form': form.data})	
+	
+		sensorsdata.recordata(value)
+		return render(request, 'pages/show.html', {'form': form.data})	
 
 	else:
 		form=Post()
